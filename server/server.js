@@ -4,6 +4,15 @@ const bodyParser = require('body-parser');
 const sqlite3 = require('sqlite3').verbose();
 const app = express();
 const port = 5000;
+const path = require('path');
+
+// Обслуживание статических файлов
+app.use(express.static(path.join(__dirname, '../client/build')));
+
+// Обработка всех остальных маршрутов и отправка index.html
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
 
 // Подключаемся к базе данных SQLite
 const db = new sqlite3.Database('./users.db', (err) => {
