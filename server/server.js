@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const sqlite3 = require('sqlite3').verbose();
 const app = express();
 const port = 5000;
-const path = require('path');
 
 // Обслуживание статических файлов
 app.use(express.static(path.join(__dirname, '../client/build')));
